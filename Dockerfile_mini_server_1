@@ -1,0 +1,14 @@
+FROM node:10
+
+WORKDIR /usr/src/app
+
+ARG CACHE_DATE=2016-01-01
+RUN git clone https://github.com/Mosarvit/mini_server_1
+
+WORKDIR /usr/src/app/mini_server_1
+
+RUN npm install
+
+EXPOSE 3001
+
+CMD [ "npm", "start" ]

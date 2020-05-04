@@ -11,7 +11,7 @@ spec:
     - protocol: TCP
       port: 3001
       targetPort: 3001
-  type: NodePort
+  type: LoadBalancer
 
 ---
 apiVersion: apps/v1
@@ -38,6 +38,14 @@ spec:
       - image: mosarvit/k8s_mini_server_1
         imagePullPolicy: IfNotPresent
         name: mini-server-1
+        resources:
+          limits:
+            memory: 0.25G
+            cpu: 0.25
+        terminationMessagePath: /dev/termination-log
+      - image: mosarvit/k8s_mini_server_2
+        imagePullPolicy: IfNotPresent
+        name: mini-server-2
         resources:
           limits:
             memory: 0.25G
